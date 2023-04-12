@@ -1,6 +1,6 @@
 import React from "react";
 
-function Input({addGuess}) {
+function Input({ addGuess, disabled }) {
   const [guess, setGuess] = React.useState("");
 
   const handleInput = (e) => {
@@ -21,7 +21,7 @@ function Input({addGuess}) {
         required
         minLength={5}
         maxLength={5}
- 
+        disabled={disabled}
         id="guess-input"
         type="text"
         value={guess}
