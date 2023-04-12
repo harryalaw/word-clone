@@ -13,7 +13,8 @@ function Input() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({guess});
+    console.log({ guess });
+    setGuess("");
   };
 
   return (
