@@ -1,5 +1,6 @@
 import Game from '../Game';
 import Header from '../Header';
+import Input from '../Input';
 
 function App() {
   return (
