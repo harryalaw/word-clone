@@ -3,6 +3,7 @@ import { checkGuess } from "../../game-helpers";
 
 function Keyboard({ guesses, answer }) {
   const guessedLetters = guesses.reduce((letterState, guessedWord) => {
+    console.log({answer});
     const letterStatus = checkGuess(guessedWord, answer);
     letterStatus.forEach(({ letter, status }) => {
       const previousValue = letterState[letter];

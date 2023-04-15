@@ -1,6 +1,6 @@
 import React from "react";
 
-function Banner({ guesses, answer, gameStatus }) {
+function Banner({ guesses, answer, gameStatus, resetGame}) {
   if (gameStatus === "inprogress") {
     return null;
   }
@@ -12,6 +12,7 @@ function Banner({ guesses, answer, gameStatus }) {
       ) : (
         <LoserText answer={answer} />
       )}
+      <button className="reset-button" onClick={resetGame}>Play again</button>
     </div>
   );
 }

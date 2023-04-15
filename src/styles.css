@@ -7,8 +7,10 @@ html {
   --game-spacing: 32px;
   --header-height: 4rem;
 
+  --color-success-dark: hsl(150deg 70% 15%);
   --color-success: hsl(150deg 70% 30%);
   --color-warning: hsl(50deg 100% 30%);
+  --color-error-dark: hsl(0deg 70% 25%);
   --color-error: hsl(0deg 70% 45%);
   --color-gray-100: hsl(0deg 0% 10%);
   --color-gray-300: hsl(0deg 0% 25%);
@@ -232,9 +234,6 @@ h1 {
   }
 }
 
-.keyboard {
-}
-
 .keyboard-row {
   padding: 8px;
   display: flex;
@@ -270,3 +269,17 @@ h1 {
   border-color: var(--color-warning);
   color: white;
 }
+
+.reset-button {
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+.happy > .reset-button {
+    background: var(--color-success-dark);
+}
+
+.sad > .reset-button {
+    background: var(--color-error-dark);
+}
+
