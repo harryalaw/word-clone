@@ -1,20 +1,13 @@
 import React from "react";
 
-function Banner({ guesses, answer, setIsFinished }) {
-  const isWin = guesses[guesses.length - 1] === answer;
-  const isLoss = guesses.length === 6 && guesses[5] !== answer;
-
-  const isFinished = isWin || isLoss;
-
-  if (!isFinished) {
+function Banner({ guesses, answer, gameStatus }) {
+  if (gameStatus === "inprogress") {
     return null;
   }
 
-  setIsFinished(true);
-
   return (
-    <div className={isWin ? "happy banner" : "sad banner"}>
-      {isWin ? (
+    <div className={gameStatus === "win" ? "happy banner" : "sad banner"}>
+      {gameStatus === "win" ? (
         <CongratsText guessCount={guesses.length} />
       ) : (
         <LoserText answer={answer} />

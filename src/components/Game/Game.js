@@ -14,7 +14,17 @@ console.info({ answer });
 
 function Game() {
   const [guesses, setGuesses] = React.useState([]);
-  const [isFinished, setIsFinished] = React.useState(false);
+  const [gameStatus, setGameStatus] = React.useState("inprogress");
+
+  React.useEffect(() => {
+    const isWin = guesses[guesses.length - 1] === answer;
+    const isLoss = guesses.length === 6 && guesses[5] !== answer;
+    if (isWin) {
+      setGameStatus("win");
+    } else if (isLoss) {
+      setGameStatus("loss");
+    }
+  }, [guesses]);
 
   const addGuess = (guess) => {
     setGuesses([...guesses, guess]);
@@ -23,9 +33,9 @@ function Game() {
   return (
     <>
       <GuessList guesses={guesses} answer={answer} />
-      <Input addGuess={addGuess} disabled={isFinished} />
-      <Keyboard />
-      <Banner guesses={guesses} answer={answer} setIsFinished={setIsFinished} />
+      <Input addGuess={addGuess} disabled={gameStatus !== "inprogress"} />
+      <Keyboard guesses={guesses} answer={answer} />
+      <Banner guesses={guesses} answer={answer} gameStatus={gameStatus} />
     </>
   );
 }

@@ -255,7 +255,7 @@ h1 {
   font-weight: 700;
 }
 
-.keyboard-cell.success {
+.keyboard-cell.correct {
   background: var(--color-success);
   border-color: var(--color-success);
   color: white;

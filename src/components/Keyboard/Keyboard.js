@@ -1,29 +1,36 @@
 import React from "react";
+import { checkGuess } from "../../game-helpers";
 
-function Keyboard({ answer, guesses }) {
-  // what's the logic, whenever we guess we update the map?
-  // then we can style based on the values?
-  //
-  // or we can just parse the vlaues
-  const letterState = {};
+function Keyboard({ guesses, answer }) {
+  const guessedLetters = guesses.reduce((letterState, guessedWord) => {
+    const letterStatus = checkGuess(guessedWord, answer);
+    letterStatus.forEach(({ letter, status }) => {
+      const previousValue = letterState[letter];
+      if (previousValue === "correct") return;
+      return (letterState[letter] = status);
+    });
+
+    return letterState;
+  }, {});
 
   const row1 = "QWERTYUIOP";
   const row2 = "ASDFGHJKL";
   const row3 = "ZXCVBNM";
+
   return (
     <div className="keyboard">
-      <LetterRow characters={row1} />
-      <LetterRow characters={row2} />
-      <LetterRow characters={row3} />
+      <LetterRow characters={row1} guessedLetters={guessedLetters} />
+      <LetterRow characters={row2} guessedLetters={guessedLetters} />
+      <LetterRow characters={row3} guessedLetters={guessedLetters} />
     </div>
   );
 }
 
-function LetterRow({ characters }) {
+function LetterRow({ characters, guessedLetters }) {
   return (
     <div className="keyboard-row">
       {characters.split("").map((char) => (
-        <Letter key={char} letter={char} />
+        <Letter key={char} letter={char} status={guessedLetters[char]} />
       ))}
     </div>
   );
